@@ -1,0 +1,27 @@
+(1) extract modelapp and inside model app type "npm install" (without the double quotes, I did it to highlight the commands) in terminal,this will install the node modules.
+
+(2) when done then go inside index.js code and in api url type your ip address, also go inside flask folder and open app.py and in last line change host to your ip address too (because app is hosted locally)
+
+(3) now inside modelapp, type "npx expo start" in the terminal.
+
+(4) now open another terminal (keep the previous one running, dont kill it) and inside new terminal type "cd flask", when inside flask folder then type "python app.py" in terminal to start the flask app which is acting like a server.
+
+(5) now run the app inside your phone and its all done (also ensure that the phone and laptop(where server is running) should be on the same network).
+
+
+
+-> I have trained my model on Cifar-10 dataset.
+
+-> Also inside AI LAB FINAL MODEL, there are learning graphs history containing the learning graphs on different models and old model's history containing the model's i've used before.
+
+-> The model i'm currently using is inside labmodel.ipynb file (containing training history and all the stuff).
+
+-> My trained model file is labfinal_model.keras
+
+
+*/
+This is me, Rana Saim Ali AKA Rana as my Sir Dr.Ahmad Khan would say and I've enjoyed the whole process even tho it was frustrating to train this model most of the time but I finally did it Alhamdulillah
+
+The current accuracy i've achieved is:
+Test Accuracy: 85.81%
+*/
