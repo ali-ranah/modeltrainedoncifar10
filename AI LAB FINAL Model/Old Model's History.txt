@@ -1,0 +1,93 @@
+# Define the CNN model (1st architecture I used which gave 76.97% accuracy)
+ model = models.Sequential()
+
+ Convolutional layers
+ model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+ model.add(layers.MaxPooling2D((2, 2)))
+ model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+ model.add(layers.MaxPooling2D((2, 2)))
+ model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+
+ Flatten layer and fully connected layers
+ model.add(layers.Flatten())
+ model.add(layers.Dense(128, activation='relu'))
+ model.add(layers.Dropout(0.5))
+ model.add(layers.Dense(num_classes, activation='softmax'))
+
+ Compile the model
+ model.compile(optimizer='adam',
+               loss='categorical_crossentropy',
+               metrics=['accuracy'])
+
+Display the model summary
+model.summary()
+
+
+
+# Define the CNN model with enhancements (2nd architecture I used which gave 78.28% accuracy)
+ model = models.Sequential()
+
+ Convolutional layers
+ model.add(layers.Conv2D(64, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+ model.add(layers.MaxPooling2D((2, 2)))
+ model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+ model.add(layers.MaxPooling2D((2, 2)))
+ model.add(layers.Conv2D(256, (3, 3), activation='relu'))
+
+ Flatten layer and fully connected layers
+ model.add(layers.Flatten())
+ model.add(layers.Dense(512, activation='relu'))
+ model.add(layers.Dropout(0.5))  # Adding dropout for regularization
+ model.add(layers.Dense(num_classes, activation='softmax'))
+
+ Compile the model with an adjusted learning rate
+ model.compile(optimizer=keras.optimizers.Adam(learning_rate=0.0001),  # Adjust the learning rate
+               loss='categorical_crossentropy',
+               metrics=['accuracy'])
+
+ Display the updated model summary
+ model.summary()
+
+
+
+
+
+# Define the CNN model (3rd model I've used, although accuracy improved to 86.91% but validation accuracy was plateauing so applying regularization in conv-layer and FCCN layer to minimize plateau)
+
+ model = models.Sequential()
+
+ model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same', input_shape=(32, 32, 3)))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+ model.add(layers.MaxPooling2D((2, 2)))
+
+ model.add(layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
+ model.add(layers.MaxPooling2D((2, 2)))
+
+ model.add(layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+ model.add(layers.MaxPooling2D((2, 2)))
+
+ model.add(layers.Conv2D(512, (3, 3), activation='relu', padding='same'))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(512, (3, 3), activation='relu', padding='same'))
+ model.add(layers.BatchNormalization())
+ model.add(layers.Conv2D(512, (3, 3), activation='relu', padding='same'))
+ model.add(layers.MaxPooling2D((2, 2)))
+
+ model.add(layers.Flatten())
+ model.add(layers.Dense(512, activation='relu'))
+ model.add(layers.Dense(256, activation='relu'))  # Additional fully connected layer
+ model.add(layers.Dropout(0.5))
+ model.add(layers.Dense(10, activation='softmax'))
+
+ model.compile(optimizer='adam',
+               loss='categorical_crossentropy',
+               metrics=['accuracy'])
+
+ model.summary()
